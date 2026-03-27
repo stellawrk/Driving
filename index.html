@@ -195,8 +195,21 @@
       const s=Math.floor((Date.now()-t0)/1000);
       document.getElementById('timer').textContent=`주행 시간: ${Math.floor(s/60)}분 ${s%60}초`;
     },1000);
+wid = navigator.geolocation.watchPosition(onGPS, null, {
+  enableHighAccuracy: true,
+  maximumAge: 0,        // 캐시된 위치 사용 안 함
+  timeout: 15000
+});
+
+
+    
     if(navigator.geolocation){
-      wid=navigator.geolocation.watchPosition(onGPS, null, {enableHighAccuracy:true,maximumAge:2000,timeout:10000});
+      wid = navigator.geolocation.watchPosition(onGPS, null, {
+                      enableHighAccuracy: true,
+                      maximumAge: 0,        // 캐시된 위치 사용 안 함
+                      timeout: 15000
+    });      
+      // wid=navigator.geolocation.watchPosition(onGPS, null, {enableHighAccuracy:true,maximumAge:2000,timeout:10000});
     }
     let sLat=37.5665+(Math.random()-.5)*.01, sLng=126.978+(Math.random()-.5)*.01;
     simID=setInterval(()=>{
